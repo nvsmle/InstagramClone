@@ -25,6 +25,7 @@ public class SignUp extends AppCompatActivity {
     private TextView txtGetData;
 
     private Button btnGetAllData;
+    private Button btnTransition;
 
     private String allKickBoxers;
 
@@ -75,6 +76,8 @@ public class SignUp extends AppCompatActivity {
 
                 ParseQuery<ParseObject> queryAll = ParseQuery.getQuery("KickBoxer");
 
+                queryAll.whereGreaterThan("punch_power", 300);
+                queryAll.whereNotEqualTo("punch_power", 999);
                 queryAll.findInBackground(new FindCallback<ParseObject>() {
                     @Override
                     public void done(List<ParseObject> objects, ParseException e) {
@@ -99,6 +102,14 @@ public class SignUp extends AppCompatActivity {
 
                     }
                 });
+
+            }
+        });
+
+        btnTransition = findViewById(R.id.btnNextActivity);
+        btnTransition.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
             }
         });
