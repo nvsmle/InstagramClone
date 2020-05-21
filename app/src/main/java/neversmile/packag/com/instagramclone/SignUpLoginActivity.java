@@ -1,5 +1,6 @@
 package neversmile.packag.com.instagramclone;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.View;
@@ -38,7 +39,7 @@ public class SignUpLoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                ParseUser appUser = new ParseUser();
+                final ParseUser appUser = new ParseUser();
                 appUser.setUsername(edtUsernameSignUp.getText().toString());
                 appUser.setPassword(edtPasswordSignUp.getText().toString());
 
@@ -47,7 +48,12 @@ public class SignUpLoginActivity extends AppCompatActivity {
                     public void done(ParseException e) {
 
                         if (e == null) {
+
                             FancyToast.makeText(SignUpLoginActivity.this, "Sign up success!", FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
+
+                            Intent intent = new Intent(SignUpLoginActivity.this, WelcomeActivity.class);
+                            startActivity(intent);
+
                         } else {
                             FancyToast.makeText(SignUpLoginActivity.this, e.getMessage(), FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
                         }
@@ -67,7 +73,12 @@ public class SignUpLoginActivity extends AppCompatActivity {
                     public void done(ParseUser user, ParseException e) {
 
                         if (user != null && e == null) {
+
                             FancyToast.makeText(SignUpLoginActivity.this, "Log in success!", FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
+
+                            Intent intent = new Intent(SignUpLoginActivity.this, WelcomeActivity.class);
+                            startActivity(intent);
+
                         } else {
                             FancyToast.makeText(SignUpLoginActivity.this, e.getMessage(), FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
                         }
